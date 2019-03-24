@@ -76,4 +76,8 @@ combine_ke_ug['e_pop_num_Ug'] = combine_ke_ug['e_pop_num_Ug']/10000
 combine_ke_ug = combine_ke_ug.drop('year' , axis = 1)
 
 #plot box plot
-combine_ke_ug.plot.box()
+combine_ke_ug.plot.box()         
+
+#commiting adding new code 
+#Agnes is great
+

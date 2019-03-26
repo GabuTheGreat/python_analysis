@@ -16,5 +16,6 @@ kenya_data = all_tb.loc['Kenya']
 all_tb.loc['Kenya' , 'e_inc_num'].describe().round()
 
 #greater than column
-all_tb[all_tb['e_inc_num'] > 30000]
+all_tb[all_tb['e_inc_num'] > 30000].count()
 
+summary= all_tb_inc_sorted.groupby (['country']).perc_rate_country_population.mean() . reset_index()

@@ -61,10 +61,3 @@ ax.set_xlabel("Rate") # Set text for the x axis
 ax.set_ylabel("Frequency of Rate") # Set text for the x axis
 plt.show()
 
-
-                    
-
-
-
-Task1.py
-Displaying Task1.py.

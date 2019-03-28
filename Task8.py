@@ -7,7 +7,7 @@ Created on Wed Mar 27 15:03:44 2019
 
 import pandas as pd
 
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 plt.style.use('ggplot')
 
 #Importing TB data
@@ -24,20 +24,29 @@ all_tb['perc_rate'] = (all_tb['e_inc_num']/all_tb['e_pop_num'] * 100) . round(2)
 #Grouping by country
 all_tb_group = all_tb.groupby(['country', 'g_whoregion'] ).perc_rate.mean().reset_index()
 
-summary = all_tb_group.groupby('g_whoregion')['perc_rate'].sum()
+#rename columns 
+
+all_tb_group.rename(columns = {"g_whoregion": "Continent"}, inplace = True )
+
+
+summary = all_tb_group.groupby('Continent')['perc_rate'].sum()
+
 
 import matplotlib.patches as mpatches
 
 summary.plot(kind='bar', rot = 0)
-AFR = mpatches.Patch(label='Africa')
+AFR = mpatches.Patch(color = 'orangered',label='Africa')
 AMR = mpatches.Patch(label='America')
-EMR = mpatches.Patch(label='emr')
-EUR = mpatches.Patch(label='Europe')
-plt.legend(handles=[AFR,AMR,EMR,EUR], loc=1)
+EMR = mpatches.Patch(color = 'mediumpurple',label='Eastern Mediterranean Region')
+EUR = mpatches.Patch(color = 'grey', label='Europe')
+SEA = mpatches.Patch(color = 'gold',label='South East Asia')
+WPR = mpatches.Patch(color = 'yellowgreen',label='West Pacific Region')
+plt.legend(handles=[AFR,AMR,EMR,EUR,SEA,WPR], loc=1)
 plt.show()
 
-#Rename series
-summary.rename(columns = {"g_whoregion":"Continent", "perc_rate":"Rate of Incurrence"}, inplace = True)
-
-summary.plot(kind='bar')
+ 
+summary.plot(kind='bar', rot = 0)
+plt.title('TB Incurrence Per Continent')
+plt.ylabel('Rate of Incurrence')
 plt.show()
+

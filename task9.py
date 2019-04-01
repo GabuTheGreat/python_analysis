@@ -19,7 +19,7 @@ all_tb = pd.read_csv ('~/Downloads/TB_burden_countries_2019-01-11.csv', encoding
 
 # Selecting required columns
 
-all_tb = all_tb[['country' , 'year', 'e_inc_num' , 'e_pop_num']]
+all_tb = all_tb[['country' , 'year','g_whoregion', 'e_inc_num' , 'e_pop_num']]
 
 all_tb['e_pop_num'].dtype
 
@@ -34,14 +34,14 @@ df = pd.DataFrame(all_tb)
 plt.scatter(df.year, df.e_inc_num)
 
 #plotting singles separately
-all_tb.groupby('country').plot(kind = 'barh', x='year', y='e_inc_num')
+all_tb.groupby('country').plot(x='year', y='e_inc_num')
 
 #plotting the singles together
 fig, ax = plt.subplots()
-all_tb.groupby('country').plot( x='year', y='e_inc_num', ax=ax, legend=False)
+all_tb.groupby('country').plot(kind = 'bar', x='year', y='e_inc_num', ax=ax, legend=False)
 
-
-df.groupby('country')['e_inc_num'].mean().sort_values().plot(kind='barh', figsize=(10,2))
+#all countries plot
+all_tb.groupby('country')['e_inc_num'].mean().sort_values().plot(kind='barh', figsize=(10,2))
 
 #Combined subplots
 fig = plt.figure()
@@ -55,8 +55,22 @@ ax2 = fig.add_subplot(212)
 all_tb.groupby('country').plot(x='year', y='e_inc_num', ax=ax1, legend=False)
 all_tb.groupby('country')['e_inc_num'].mean().sort_values().plot(kind='barh', ax=ax2)
 
-df = pd.DataFrame(np.random.randn(10,2), columns=['col1','col2'])
-df['col3'] = np.arange(len(df))**2 * 100 + 100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # group by countries
